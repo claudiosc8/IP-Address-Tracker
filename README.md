@@ -1,5 +1,9 @@
 # Frontend Mentor - IP Address Tracker
 
+**Check the deployed app [here](https://ip-address-tracker-blond.vercel.app)**
+
+**Check the report on Frontend Mentor [here](https://www.frontendmentor.io/solutions/fylo-data-storage-component-using-react-wBHUxM7Th)**
+
 ![Design preview for the IP Address Tracker coding challenge](./design/desktop-preview.jpg)
 
 ## Welcome! 👋
