@@ -1,6 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react';
-import axios from 'axios';
-import { Map, TileLayer, Marker, Control } from 'react-leaflet';
+import React from 'react';
+import { Map, TileLayer, Marker } from 'react-leaflet';
 import { Icon } from "leaflet";
 import Pin from './images/icon-location.svg'
 
