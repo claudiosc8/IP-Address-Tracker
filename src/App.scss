@@ -179,6 +179,7 @@ h1 {
     flex-basis: 25%;
     flex-grow: 0;
     width: 100%;
+    max-width: 25%;
     padding:0 32px;
     border-left:1px solid #d9d9d9;
     word-wrap: break-word;
@@ -251,6 +252,7 @@ h1 {
     flex-wrap: wrap;
     & .item {
       flex-basis: 50%;
+      max-width: 50%;
       &:first-child {
         margin-bottom: 25px;
       }
@@ -287,6 +289,7 @@ h1 {
   #result {
     & .item {
       flex-basis: 100%;
+      max-width: 100%;
       padding:0 20px;
       border-left:none;
       text-align: center;

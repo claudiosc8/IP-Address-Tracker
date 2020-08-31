@@ -45,7 +45,15 @@ function App() {
         <h1>IP Address Tracker</h1>
         <form id='form' onSubmit={onSubmit}> 
           <div className="input-group">
-            <input ref={inputRef} type="text" className="form-control" placeholder="Search any IP address or domain" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+            <input 
+              ref={inputRef} 
+              type="text" 
+              className="form-control" 
+              placeholder="Search any IP address" 
+              aria-label="Search any IP address" 
+              aria-describedby="ip-finder" 
+              pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"
+              />
             <div className="input-group-append">
               <button className="btn" type="submit"><img src={Arrow} alt='Submit' /></button>
             </div>
