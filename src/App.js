@@ -55,9 +55,9 @@ function App() {
         <div className='container inter-section'>
           <div id='result'> 
             {
-            currentIP.ip ? 
+            currentIP.success !== undefined ? 
             (
-              currentIP.success ?
+              currentIP.success === true ?
               <React.Fragment>
               <div className='item'>
                 <h4>IP Address</h4>
@@ -65,7 +65,7 @@ function App() {
               </div>
               <div className='item'>
                 <h4>Location</h4>
-                <div className='value'>{`${currentIP.city}, ${currentIP.region} ${currentIP.country}`}</div>
+                <div className='value'>{`${currentIP.city}, ${currentIP.region}, ${currentIP.country}`}</div>
               </div>
               <div className='item'>
                 <h4>Timezone</h4>
