@@ -51,7 +51,6 @@ function App() {
               className="form-control" 
               placeholder="Search any IP address" 
               aria-label="Search any IP address" 
-              aria-describedby="ip-finder" 
               pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"
               />
             <div className="input-group-append">
@@ -102,12 +101,12 @@ function App() {
         </div>
 
       </header>
-      <section id='map-container'>
+      <div id='map-container'>
         <MapComponent 
           center={[currentIP.latitude, currentIP.longitude]}
           error={currentIP.success ? false : true}
           />
-      </section>
+      </div>
       </React.Fragment>
   );
 
