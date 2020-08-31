@@ -206,6 +206,7 @@ h1 {
     }
     &.error {
       flex-basis: 100%;
+      max-width: 100%;
       text-align: center;
     }
   }
