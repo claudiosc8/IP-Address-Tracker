@@ -40,7 +40,7 @@ function Data({currentIP, error}) {
         return (
 
           <SyncLoader
-            size={10}
+            size={11}
             color={"#5a79e3"}
             loading={true}
           />
