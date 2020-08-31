@@ -55,17 +55,17 @@ function App() {
         <div className='container inter-section'>
           <div id='result'> 
             {
-            currentIP.status ? 
+            currentIP.ip ? 
             (
-              currentIP.status === 'success' ?
+              currentIP.success ?
               <React.Fragment>
               <div className='item'>
                 <h4>IP Address</h4>
-                <div className='value'>{currentIP.query}</div>
+                <div className='value'>{currentIP.ip}</div>
               </div>
               <div className='item'>
                 <h4>Location</h4>
-                <div className='value'>{`${currentIP.city}, ${currentIP.region} ${currentIP.zip}`}</div>
+                <div className='value'>{`${currentIP.city}, ${currentIP.region} ${currentIP.country}`}</div>
               </div>
               <div className='item'>
                 <h4>Timezone</h4>
@@ -80,7 +80,7 @@ function App() {
               <React.Fragment>
               <div className='item error'>
                 <h4>Error</h4>
-                <div className='value'>{currentIP.message}, (<span>'{currentIP.query}'</span>)</div>
+                <div className='value'>{currentIP.message}</div>
               </div>
               </React.Fragment>
             )
@@ -96,8 +96,8 @@ function App() {
       </header>
       <section id='map-container'>
         <MapComponent 
-          center={[currentIP.lat, currentIP.lon]}
-          error={currentIP.status === 'success' ? false : true}
+          center={[currentIP.latitude, currentIP.longitude]}
+          error={currentIP.success ? false : true}
           />
       </section>
       </React.Fragment>
