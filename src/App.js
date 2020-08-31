@@ -12,7 +12,7 @@ function App() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios.get(`http://ipwhois.app/json/${inputRef.current.value}`)
+    axios.get(`https://ipwhois.app/json/${inputRef.current.value}`)
       .then(function (response) {
         setCurrentIP(response.data)
         inputRef.current.value = '';
@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
 
-    axios.get(`http://ipwhois.app/json/`)
+    axios.get(`https://ipwhois.app/json/`)
       .then(function (response) {
         setCurrentIP(response.data)
         console.log(response.data)
