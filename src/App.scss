@@ -174,7 +174,7 @@ h1 {
   display: flex;
   flex-grow: 1;
   border-radius:20px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
   justify-content: center;
   & .item {
     flex-basis: 25%;
@@ -189,6 +189,7 @@ h1 {
     }
     & h4 {
       font-size: 12px;
+      letter-spacing: 1px;
       font-weight: 500;
       color:$Dark-Gray;
       text-transform: uppercase;

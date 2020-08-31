@@ -1,41 +1,45 @@
 import React, {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 import MapComponent from './Map.js'
+import Data from './Data'
 import Arrow from './images/icon-arrow.svg'
-import SyncLoader from "react-spinners/SyncLoader";
 import './App.scss';
 
 function App() {
 
   const [currentIP, setCurrentIP] = useState({})
+  const [error, setError] = useState(false)
   const inputRef = useRef(null)
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios.get(`https://ipwhois.app/json/${inputRef.current.value}`)
+    const Reg = /([a-z0-9]+\.)*[a-z0-9]+\.[a-z]+/
+    const type = Reg.test(inputRef.current.value) ? 'domain' : 'ipAddress'
+    setCurrentIP({})
+    setError(false)
+    axios.get(`https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_TOKEN}&${type}=${inputRef.current.value}`)
       .then(function (response) {
         setCurrentIP(response.data)
+        setError(false)
         inputRef.current.value = '';
-        console.log(response.data)
       })
       .catch(function (error) {
-        console.log(error);
+        setError(error.response.data.messages)
+        setCurrentIP({})
       })
   }
 
   useEffect(() => {
 
-    axios.get(`https://ipwhois.app/json/`)
+    axios.get(`https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_TOKEN}`)
       .then(function (response) {
         setCurrentIP(response.data)
-        console.log(response.data)
       })
       .catch(function (error) {
-        console.log(error);
+        setError(error.response.data.messages)
       })
 
   }, [])
-
 
 
   return (
@@ -49,9 +53,8 @@ function App() {
               ref={inputRef} 
               type="text" 
               className="form-control" 
-              placeholder="Search for any IP address" 
-              aria-label="Search for any IP address" 
-              pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"
+              placeholder="Search for any IP address or domain" 
+              aria-label="Search for any IP address or domain" 
               />
             <div className="input-group-append">
               <button className="btn" type="submit"><img src={Arrow} alt='Submit' /></button>
@@ -61,50 +64,18 @@ function App() {
 
         <div className='container inter-section'>
           <div id='result'> 
-            {
-            currentIP.success !== undefined ? 
-            (
-              currentIP.success === true ?
-              <React.Fragment>
-              <div className='item'>
-                <h4>IP Address</h4>
-                <div className='value'>{currentIP.ip}</div>
-              </div>
-              <div className='item'>
-                <h4>Location</h4>
-                <div className='value'>{`${currentIP.city}, ${currentIP.region}, ${currentIP.country}`}</div>
-              </div>
-              <div className='item'>
-                <h4>Timezone</h4>
-                <div className='value'>{currentIP.timezone}</div>
-              </div>
-              <div className='item'>
-                <h4>ISP</h4>
-                <div className='value'>{currentIP.isp}</div>
-              </div>
-              </React.Fragment>
-              : 
-              <React.Fragment>
-              <div className='item error'>
-                <h4>Error</h4>
-                <div className='value'>{currentIP.message}</div>
-              </div>
-              </React.Fragment>
-            )
-            : <SyncLoader
-              size={10}
-              color={"#5a79e3"}
-              loading={true}
+            <Data 
+              currentIP={currentIP}
+              error={error}
             />
-            }
           </div>
         </div>
 
       </header>
       <div id='map-container'>
         <MapComponent 
-          center={[currentIP.latitude, currentIP.longitude]}
-          error={currentIP.success ? false : true}
+          center={currentIP.ip && [currentIP.location.lat, currentIP.location.lng]}
+          error={currentIP.ip === undefined || error}
           />
       </div>
       </React.Fragment>
